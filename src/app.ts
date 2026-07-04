@@ -22,6 +22,16 @@ app.use(morgan('dev'));
 // 4. API Routes
 app.use('/api', routes);
 
+// 4.5 Welcome Route
+app.get('/', (_req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'Welcome to the InfinityAI Backend API! 🧠',
+    version: '1.0.0',
+    status: 'online'
+  });
+});
+
 // 5. Catch-all for undefined routes
 app.use('*', (req, _res, next) => {
   next(new AppError(`Route ${req.originalUrl} not found`, 404));
